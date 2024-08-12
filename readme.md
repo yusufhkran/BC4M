@@ -56,5 +56,5 @@
    - Bu çözümün benim istediğim çözüm olduğunu dokümantasyonlardaki adımları izleyip benim uyguladığım adımlarla aynı olduğunu fark edince uygulamaya koyuldum.
    - "kubectl expose deployment hello-server --type LoadBalancer --port 80 --target-port 8080"
    - Dokümantasyonda bulduğum bu shell kodunu kendi uygulamama hizmet edecek şekilde değiştirdim ve son hali `kubectl expose deployment bc4m-cluster --type LoadBalancer --port 5000 --target-port 5000` oldu.
-  - Burada cluster'a gönderdiğim LoadBalancer türündeki servis sayesinde uygulamam dış dünyaya açıldı.
-  - Son olarak "Gateways, Services & Ingress" kısmından oluşturduğum servisin endpoint kısmından oluşturulan IP adresine giriş yaptım ve {"msg": "BC4M"} yazısını gördüm. /health isteği gönderip durumunu kontrol ettim. Postman ile body'den post istekleri atıp kontrolleri gerçekleştirdim ve herhangi bir sorunlarla karşılaşmadım.
+   - Burada cluster'a gönderdiğim LoadBalancer türündeki servis sayesinde uygulamam dış dünyaya açıldı.
+   - Son olarak "Gateways, Services & Ingress" kısmından oluşturduğum servisin endpoint kısmından oluşturulan IP adresine giriş yaptım ve {"msg": "BC4M"} yazısını gördüm. /health isteği gönderip durumunu kontrol ettim. Postman ile body'den post istekleri atıp kontrolleri gerçekleştirdim ve herhangi bir sorunlarla karşılaşmadım.
