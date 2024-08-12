@@ -1,4 +1,4 @@
-										Projeyi Hazırlama Adımlarım
+Projeyi Hazırlama Adımlarım
 
 * İlk olarak GÖREVLER kısmındaki ilk adımı okuyup yapmama gerekenleri okuyup daha sonra işe koyuldum. İlk iş olarak API hakkındaki bilgilerimi geliştirmem gerektiğini düşündüm.
 
@@ -26,13 +26,13 @@
 
 * Docker file oluştururken ki adımlarım ;
  
- - Bu imajda koşturacak olan container ların üzerinde çalışacağı işletim sistemini ve yazılımını FROM ile Python ve Linux Alpine tabanlı imajını seçtim.
+ *** Bu imajda koşturacak olan container ların üzerinde çalışacağı işletim sistemini ve yazılımını FROM ile Python ve Linux Alpine tabanlı imajını seçtim.
  
- - WORKDIR ile app dosyası açıp COPY ile projedeki dosyaları buraya kopyaladım.
+ *** WORKDIR ile app dosyası açıp COPY ile projedeki dosyaları buraya kopyaladım.
 
- - "RUN pip install -r  requirements.txt" ile projedeki Flask gibi bağımlılıkları projeye indirdim.
+ *** "RUN pip install -r  requirements.txt" ile projedeki Flask gibi bağımlılıkları projeye indirdim.
 
- - EXPOSE ile 5000 portuna publish ettim ve son olarak CMD ile programı çalıştırma komutunu girdim.
+ *** EXPOSE ile 5000 portuna publish ettim ve son olarak CMD ile programı çalıştırma komutunu girdim.
 
 * Daha sonra oluşturduğum Docker file ile bir image oluşturma adımına geçtim. Docker mantığını daha önceden biliyor olmak bana fazlasıyla vakit kazandırmıştı ve çok kısa bir araştırmayla image oluşturma işlemini tamamladım.
 
@@ -80,31 +80,29 @@
 * Cluster oluşturma kısmı çok fazla zor olmamıştı. Beni asıl zorlayan kısım image i deploy etmek oldu.
 
 * Deploy kısmında izlediğim adımlar:
- - İlk olarak GCP dokümantasyonu eşliğinde Google cloud shell i bilgisayarıma kurdum. 
- - Daha sonra buradan cloud hesabıma giriş yaptım ve YouTube üzerinden bir örneği uygulamaya çalıştım. 
+ *** İlk olarak GCP dokümantasyonu eşliğinde Google cloud shell i bilgisayarıma kurdum. 
+ *** Daha sonra buradan cloud hesabıma giriş yaptım ve YouTube üzerinden bir örneği uygulamaya çalıştım. 
 
- - Oluşturduğum clustera girip connect kısmında yazan bağlantı ile shell üzerinden clustera bağlandım.
+ *** Oluşturduğum clustera girip connect kısmında yazan bağlantı ile shell üzerinden clustera bağlandım.
 
- - Clustera bağlandıktan sonra shell üzerinden kubectl aracalığı ile deployment yarattım.
+ *** Clustera bağlandıktan sonra shell üzerinden kubectl aracalığı ile deployment yarattım.
 
- - "Uygulama Deploymentı" görevinin ilk kısmını tamamlamış oldum fakat ikinci kısımda istenen "/health endpointinin cevap vermediği durumda uygulama otomatik restrart olmalı" kısmını anlayamadım. Uygulama çalışır durumda ve neden cevap vermemesi gerektiğini ve  uygulamanın restart kısmının uygulamanın yazılımıylamı restart edilecekti yoksa clusterlamı restart edilecekti anlayamadığım için bu kısmı askıya aldım ve son görevle yoluma devam ettim.
+ *** "Uygulama Deploymentı" görevinin ilk kısmını tamamlamış oldum fakat ikinci kısımda istenen "/health endpointinin cevap vermediği durumda uygulama otomatik restrart olmalı" kısmını anlayamadım. Uygulama çalışır durumda ve neden cevap vermemesi gerektiğini ve  uygulamanın restart kısmının uygulamanın yazılımıylamı restart edilecekti yoksa clusterlamı restart edilecekti anlayamadığım için bu kısmı askıya aldım ve son görevle yoluma devam ettim.
 
- - Son görevdeki loadBalancer ekleme kısmının çözümünü uzun bir araştırmanın sonunda GCP dokümantasyonunda buldum.
+ *** Son görevdeki loadBalancer ekleme kısmının çözümünü uzun bir araştırmanın sonunda GCP dokümantasyonunda buldum.
 
- - Bu çözümün benim istediğim çözüm olduğunu dokümantasyonlardaki adımları izleyip benim uyguladığım adımlarla aynı olduğunu fark edince uygulamaya koyuldum.
+ *** Bu çözümün benim istediğim çözüm olduğunu dokümantasyonlardaki adımları izleyip benim uyguladığım adımlarla aynı olduğunu fark edince uygulamaya koyuldum.
 
- - kubectl expose deployment hello-server \
+ *** kubectl expose deployment hello-server \
     --type LoadBalancer \
     --port 80 \
     --target-port 8080
 
- - Dokümantasyonda bulduğum bu shell kodunu kendi uygulamama hizmet edecek şekilde değiştirdim ve son hali " kubectl expose deployment bc4m-cluster --type LoadBalancer --port 5000 --target-port 5000" oldu.
+ *** Dokümantasyonda bulduğum bu shell kodunu kendi uygulamama hizmet edecek şekilde değiştirdim ve son hali " kubectl expose deployment bc4m-cluster --type LoadBalancer --port 5000 --target-port 5000" oldu.
 
- - Burada clustera gönderdiğim LoadBalancer türündeki servis sayesinde uygulamam dış dünyaya açıldı.
+ *** Burada clustera gönderdiğim LoadBalancer türündeki servis sayesinde uygulamam dış dünyaya açıldı.
 
- - Son olarak Gateways, Services & Ingress kısmından oluşturduğum servisin endpoint kısmından oluşturulan ip adresine giriş yaptım ve {"msg": "BC4M"} yazısını gördüm. /health isteği gönderip durumunu kontrol ettim. Postman ile body den        post istekleri atıp kontrolleri gerçekleştirdim ve herhangi bir sıkıntıyla karşılaşmadım. 
-
-* 
+ *** Son olarak Gateways, Services & Ingress kısmından oluşturduğum servisin endpoint kısmından oluşturulan ip adresine giriş yaptım ve {"msg": "BC4M"} yazısını gördüm. /health isteği gönderip durumunu kontrol ettim. Postman ile body den        post istekleri atıp kontrolleri gerçekleştirdim ve herhangi bir sıkıntıyla karşılaşmadım. 
 
 
 
