@@ -1,6 +1,6 @@
 ## Projeyi Hazırlama Adımlarım
 
-1. **API yazma aşamalarım**
+1. **API yazma adımlarım**
    - İlk olarak GÖREVLER kısmındaki ilk adımı okuyup yapmam gerekenleri okuyup daha sonra işe koyuldum. İlk iş olarak API hakkındaki bilgilerimi geliştirmem gerektiğini düşündüm.
    - Daha önce herhangi bir API yazmadığım için case ile tanıştığım ilk gün olan 09/08/2024 gününü API hakkında bilgi edinme ve kullanacağım yazılım dilini seçmeye ayırdım.
    - API nedir? Ne işe yarar? Nasıl yazılır? gibi sorulara cevap buldum ve sırada seçeceğim yazılım dili vardı.
