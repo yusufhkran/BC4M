@@ -60,3 +60,16 @@
    - Dokümantasyonda bulduğum bu shell kodunu kendi uygulamama hizmet edecek şekilde değiştirdim ve son hali `kubectl expose deployment bc4m-cluster --type LoadBalancer --port 5000 --target-port 5000` oldu.
    - Burada cluster'a gönderdiğim LoadBalancer türündeki servis sayesinde uygulamam dış dünyaya açıldı.
    - Son olarak "Gateways, Services & Ingress" kısmından oluşturduğum servisin endpoint kısmından oluşturulan IP adresine giriş yaptım ve {"msg": "BC4M"} yazısını gördüm. /health isteği gönderip durumunu kontrol ettim. Postman ile body'den post istekleri atıp kontrolleri gerçekleştirdim ve herhangi bir sorunlarla karşılaşmadım.
+7. **URL oluşturma ve Ingress Kurma adımlarım:**
+   - Bu işlemlerden sonra hazırladığım proje adımlarını açıkladığım metin belgesini bir markdown dosyası haline getirdim.
+   - Projede anlamadığım kısım olan "/health endpointinin cevap vermediği durumda uygulama otomatik restrart olmalı" kısmına geri dönme kararı aldım. Bu kısımla uğraşırken son görevde bizden url ile uygulamaya giriş yapılmamız gerektiği söyleniyordu. Daha sonra hostinger üzerinden bir domain aldım.
+   - Bu domaini uygulamaya entegre etmeye çalışırken ip adresimi A kaydına eklerken bir sorunla karşılaştım. Ip adresimde port belirtildiği için bu adresi domaine entegre edemedim.
+   - Ip adresimdeki port belirtilmesini istemediğim için bu konuyu araştırmaya başladım. İnternet üzerinde hiçbir örnek bulamadığım için yapay zekaya başvurdum.
+   - Bunun sonucunda LoadBalancer ıma backend ve frontend konfigürasyonu eklememe gerektiğini öğrendim. 
+   - GCP Kubernetes Engine üzerinde services kısmında bulunan loadbalancerıma ingress eklerken backend konfigürasyonunda 5000 portunu girdim daha sonra hangi service in backend i olacağını seçtim ve oluşturdum.
+   - Birkaç dakika sonra ingress aktif oldu fakat şöyle bir sıkıntıyla karşılaştım. Hem service üzerinden hem de ingress üzerinden uygulamaya ulaşabiliyordum.
+   - Bunu engellemek adına araştırma yaptım ve services kısmındaki external loadbalancer ı clusterip tipine çevirmem gerektiğini yapay zeka sayesinde aldım ve uyguladım.
+   - Bu işlemi uyguladıktan sonra ingress in oluşturduğu ip ile girip olumlu sonuçları aldım. Daha sonra bu ip ile domaini entegre hale getirdim.
+   - Burada projeyi noktalayıp göndermeyi düşündüm fakat daha sonra projede eksik bir kısmın olması içime sinmedi ve sizin tarafınızla "/health endpointinin cevap vermediği durumda uygulama otomatik restrart olmalı" isteği hakkında iletişime geçtim.
+   - Hakan Bey'in bana durumu açıklamasının ardından ne yapmam gerektiğini anlamıştım fakat neden yapmam gerektiğini ve ne işe yarayacağını hala anlayamamıştım.
+   - Söylediğiniz talimatları uygulamaya koyulup workloads kısmından uygulamanın deployment.yml dosyasına ulaşıp Yaml dosyasına liveness probe kısmını yapay zekadan yardım alarak ekledim.
